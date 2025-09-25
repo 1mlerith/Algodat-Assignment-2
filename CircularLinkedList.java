@@ -42,7 +42,7 @@ public class CircularLinkedList<T> extends MyLinkedList<T> {
         } while (current != head);
 
         if (!current.data.equals(data)) {
-            System.out.println("Data tidak ditemukan.");
+            System.out.println("Data " + data + " tidak ditemukan.");
             return;
         }
 
@@ -51,13 +51,16 @@ public class CircularLinkedList<T> extends MyLinkedList<T> {
             return;
         }
 
+
         if (current == head) {
-             while(prev.next != head) {
-                prev = prev.next;
+
+            Node<T> last = head;
+            while (last.next != head) {
+                last = last.next;
             }
-            head = current.next;
-            prev.next = head;
-        } else {
+            head = head.next;
+            last.next = head;
+        } else { 
             prev.next = current.next;
         }
     }
@@ -65,10 +68,10 @@ public class CircularLinkedList<T> extends MyLinkedList<T> {
     @Override
     public void display() {
         if (head == null) {
-            System.out.println("List kosong.");
+            System.out.println("Circular: List kosong.");
             return;
         }
-        System.out.print("");
+        System.out.print("Circular: ");
         Node<T> current = head;
         do {
             System.out.print(current.data + " -> ");
@@ -82,4 +85,3 @@ public class CircularLinkedList<T> extends MyLinkedList<T> {
         return head == null;
     }
 }
-
